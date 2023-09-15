@@ -5,6 +5,9 @@
 #include <algorithm>
 #include <optional>
 #include <filesystem>
+#include <mutex>
+#include <iostream>
+
 
 class ProcessManager {
 public:
@@ -104,7 +107,8 @@ private:
         if (it) {
             std::swap(**it, pids.back());
             pids.pop_back();
+            return true;
         }
-        return it != std::nullopt;
+        return false;
     }
 };
